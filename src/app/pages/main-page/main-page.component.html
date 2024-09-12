@@ -1,0 +1,18 @@
+<h1>Develops Today Test Task</h1>
+
+<mat-form-field appearance="outline">
+  <mat-label>Search for a country</mat-label>
+  <input type="text" matInput [formControl]="countryName" placeholder="Enter country name" [matAutocomplete]="auto" />
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let country of filteredCountries$ | async" [value]="country.name">
+    {{ country.name }}
+  </mat-option>
+</mat-autocomplete>
+
+<mat-list>
+  <mat-list-item *ngFor="let country of filteredCountries$ | async">
+    <a [routerLink]="['/country', country.countryCode]">{{ country.name }}</a>
+  </mat-list-item>
+</mat-list>
